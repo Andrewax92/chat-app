@@ -14,10 +14,7 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     signup(email,password,displayName,thumbnail)
-    console.log(email);
-    console.log(password);
-    console.log(displayName);
-    console.log(thumbnail);
+   
 
 
   }
@@ -37,7 +34,7 @@ const Signup = () => {
        setThumbnailError('Selected file must be an Image')
        return
      }
-    if(selected.size > 100000){
+    if(selected.size >2*1024*1024){
       setThumbnailError("Image file size must be less then 100kb")
       return
     }

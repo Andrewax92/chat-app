@@ -1,54 +1,56 @@
 .sidebar {
-    width: 200px;
-    min-width: 200px;
-    background: linear-gradient(to right bottom,
-    rgba(255,255,255,0.7),
-    rgba(255,255,255,0.7));
-    min-height: 100vh;
-    box-sizing: border-box;
-    position: relative;
-    color: #fff;
-  }
-  .sidebar-content {
-    position: fixed;
-    width: inherit;
-  }
-  .sidebar .user {
-    font-weight: bold;
-    text-align: center;
-    letter-spacing: 1px;
-    padding: 40px 30px;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-  }
-  .sidebar .links {
-    margin-top: 80px;
-    margin-left: 20px;
-  }
+  width: 300px;
+  min-width: 300px;
+  background: var(--primary-color);
+  min-height: 100vh;
+  box-sizing: border-box;
+  position: relative;
+  color: #fff;
+}
+.sidebar-content {
+  position: fixed;
+  width: inherit;
+}
+.sidebar .user {
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+  padding: 40px 30px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.sidebar .links {
+  margin-top: 80px;
+  margin-left: 20px;
+}
+.sidebar .links li {
+  margin-top: 10px;
+}
+.sidebar .links a {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  text-decoration: none;
+  width: 100%;
+  color: #fff;
+  box-sizing: border-box;
+}
+.sidebar .links span{
+  margin-left: 5px;
+}
 
+.sidebar .links a.active {
+  color: #555;
+  background: var(--bg-color);
+  border-radius: 20px 0 0 20px;
+}
+.sidebar .links .active img {
+  filter: invert(40%);
+}
 
-  .sidebar .links li {
-    margin-top: 10px;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-  
-  }
-  .sidebar .links a {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    text-decoration: none;
-    width: 100%;
-    color: #fff;
-    box-sizing: border-box;
-  }
-  .sidebar span{
-      margin-left: 10px;
-  }
- 
-  .sidebar .links a.active {
-    color: #555;
-    background: linear-gradient(to right top,#65dfc9,#6cdbeb);
-    border-radius: 20px 0 0 20px;
-  }
-  
+/* avatar in sidebar */
+.sidebar .user .avatar {
+  margin-bottom: 10px;
+  width: 70px;
+  height: 70px;
+  border: 3px solid #fff;
+}

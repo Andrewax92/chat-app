@@ -5,11 +5,17 @@ import { useLogin } from '../../hooks/useLogin'
 const Login = () => {
   const[email,setEmail] = useState('')
   const[password,setPassword] = useState('')
-  const {error,isPending,login} = useLogin()
 
-  const handleSubmit = (e) =>{
+  const {loginError,login,isPending} = useLogin()
+  console.log(loginError);
+
+  const handleSubmit =  async (e) =>{
     e.preventDefault()
-    login(email,password);
+     await login(email,password);
+    if(loginError){
+      setEmail("")
+      setPassword("")
+    }
   }
   return (
       <form className = "auth-form" onSubmit={handleSubmit}>
@@ -27,9 +33,9 @@ const Login = () => {
            value={password}
            onChange = {(e) => setPassword(e.target.value)} />
          </label>
-         {!isPending && <button className="btn"> Sign up</button>}
+         {!isPending && <button className="btn"> Sign in</button>}
          {isPending && <button className="btn" disabled>loading</button>}
-         {error&& <div className="error">{error}</div>}
+         {loginError &&  <div className="error">{loginError}</div>}
       </form>
     )
 }

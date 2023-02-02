@@ -8,19 +8,18 @@ import { useAuthContext } from "./useAuthContext";
 export const useLogin = () => {
 
     const [isCancelled, setIsCancelled] = useState(false)
-    const [error, setError] = useState(null)
+    const [loginError, setLoginError] = useState(null)
     const [isPending, setIsPending] = useState(false)
     const { dispatch } = useAuthContext()
 
     const login = async (email, password) => {
-        setError(null)
+
+        setLoginError(null)
         setIsPending(true)
 
         try {
 
             const res = await signInWithEmailAndPassword(auth, email, password)
-
-
 
             const docRef = doc(db, 'users', res.user.uid)
 
@@ -34,17 +33,16 @@ export const useLogin = () => {
             // update state 
             if (!isCancelled) {
                 setIsPending(false)
-                setError(null)
+                setLoginError(null)
             }
 
+        } catch (err) {
 
-
-
-        } catch (error) {
             if (!isCancelled) {
-                console.log(error);
-                setError(error.message)
+
                 setIsPending(false)
+                setLoginError(err.message)
+
             }
 
         }
@@ -56,5 +54,6 @@ export const useLogin = () => {
 
 
     }, [])
-    return { error, login, isPending }
+
+    return { loginError, login, isPending }
 }

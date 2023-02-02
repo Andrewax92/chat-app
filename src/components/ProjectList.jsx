@@ -3,11 +3,11 @@ import Avatar from "./Avatar"
 import "./ProjectList.css"
 
 
-const ProjectList = ({data}) => {
+const ProjectList = ({projects}) => {
   return (
     <div className="project-list">
-     { data.length === 0 && <p>No projects yet</p>}
-    {data.map(project => (
+     { projects.length === 0 && <p>No projects yet</p>}
+    {projects.map(project => (
         <Link to={`/project/${project.id}`} key={project.id}>
         <h4>{project.name}</h4>
         <p>Due by {project.dueDate.toDate().toDateString()}</p>

@@ -1,13 +1,25 @@
 import React from 'react'
 import Avatar from '../../components/Avatar'
-
+import {useFireStore} from '../../hooks/useFireStore'
+import {useAuthContext} from '../../hooks/useAuthContext'
+import {useNavigate} from 'react-router-dom'
 const ProjectSummary = ({project}) => {
+    const {deleteDocument} = useFireStore("projects")
+    const {user} = useAuthContext()
+    const navigate = useNavigate()
+
+    const handleClick = (e) => {
+        deleteDocument(project.id)
+
+        navigate("/")
+    }
   return (
     <div>
         <div className="project-summary">
             <h2 className="page-title">{project.name}</h2>
+            <p>By{project.createdBy.displayName}</p>
             <p className="due-date">
-                project due by {project.dueDate.toDate().toDateString()}
+                Project due by {project.dueDate.toDate().toDateString()}
             </p>
             <p className="details">
                 {project.details}
@@ -20,9 +32,10 @@ const ProjectSummary = ({project}) => {
                 </div>
             ))}
             </div>
-          
         </div>
-      
+       {user.uid === project.createdBy.id && (
+        <button className="btn" onClick={handleClick}>Mark as complete</button>
+        )}
     </div>
   )
 }

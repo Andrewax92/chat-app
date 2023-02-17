@@ -5,6 +5,7 @@ import './Dashboard.css'
 import ProjectFilter from './ProjectFilter'
 import { useAuthContext } from '../../hooks/useAuthContext'
 
+
 const Dashboard = () => {
 
   const {user} = useAuthContext()
@@ -12,6 +13,8 @@ const Dashboard = () => {
   const {documents,error} = useCollection('projects')
 
   const [currentFilter,setCurrentFilter] = useState('all')
+
+  
 
 
   const handleFilter = (filterOption) => {
@@ -45,11 +48,12 @@ const Dashboard = () => {
   }): null
 
   return (
-    <div>
+    <div className ="dashboard">
       <h2 className="page-title">Dashboard</h2>
       {error &&  <p className="error">{error}</p>}
       {documents && <ProjectFilter  currentFilter={currentFilter} handleFilter={handleFilter}/>}
       {projects && <ProjectList projects={projects} />}
+   
     </div>
   )
 }

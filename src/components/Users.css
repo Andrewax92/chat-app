@@ -13,24 +13,51 @@
     border-bottom: 1px solid #eee;
     font-size: 1.2em;
   }
+  .user-list h5 {
+    color:navy;
+  }
   .user-list .user-list-item {
+    position: relative;
     display: flex;
+    flex-direction: column;
+    /* position: relative; */
     justify-content: flex-end;
-    align-items: center;
+    align-items:flex-end;
     margin: 20px auto;
   }
   .user-list .avatar {
+
     margin-left: 10px;
     width: 40px;
     height: 40px;
   }
+  .user-list-item_avatar{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .user-list p{
+
+    font-size: xx-small;
+    margin: 0 auto;
+    color: orangered;
+
+  }
   /* online users */
   .user-list .online-user{
-      display: inline-block;
-      margin-right: 10px;
+      position: absolute;
       width: 12px;
       height:12px;
       background: rgb(16, 180, 16);
       border-radius: 50%;
       margin-top: 2px;
   }
+   /* new message alert */
+   .meesage-alert{
+    margin-right: 5px;
+    width: 12px;
+    height:12px;
+    background: rgb(233, 7, 18);
+    border-radius: 50%;
+    margin-top: 2px;
+   }

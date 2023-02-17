@@ -44,6 +44,14 @@
     font-size: 1.5em;
   }
   /* comment list */
+.project-comments{
+  height: 50%;
+}
+.project-comments-container{
+  overflow: scroll;
+  height: 50%; 
+  width:100%;
+}
 .project-comments h4 {
   color: var(--heading-color);
 }

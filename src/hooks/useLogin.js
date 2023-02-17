@@ -24,7 +24,8 @@ export const useLogin = () => {
             const docRef = doc(db, 'users', res.user.uid)
 
             await updateDoc(docRef, {
-                online: true
+                online: true,
+                lastVisit: null
             })
 
             // dispatch login action

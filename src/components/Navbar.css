@@ -12,7 +12,7 @@
 }
 .navbar .logo {
   font-weight: bold;
-  color: var(--heading-color);
+  color: white;
   letter-spacing: 1px;
   display: flex;
   align-items: center;
@@ -27,7 +27,10 @@
   margin-top: -8px;
 }
 .navbar a {
-  color: #333;
+  color: white;
   text-decoration: none;
   margin-right: 20px;
+}
+.navbar a:hover{
+  color: blueviolet;
 }

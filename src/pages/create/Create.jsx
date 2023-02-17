@@ -7,7 +7,9 @@ import {useAuthContext} from '../../hooks/useAuthContext'
 import { useFireStore } from '../../hooks/useFireStore'
 import { useNavigate } from 'react-router'
 import './Create.css'
-
+import { doc, updateDoc, increment,arrayUnion } from "firebase/firestore"
+import { db } from '../../firebase/config'
+import {v4 as uuid} from 'uuid'
 const categories = [
   {value: 'development', label:'Development'},
   {value: 'design', label:'Design'},
@@ -23,7 +25,9 @@ const Create = () => {
   const[assignedUsers,setAssignedUsers] = useState([])
   const[formError,setFormError] = useState(null)
 
+
   const {documents} = useCollection('users')
+
   const {user} = useAuthContext()
   const {addDocument,state} = useFireStore('projects')
   const navigate = useNavigate()
@@ -32,7 +36,7 @@ const Create = () => {
 
 
  
-  const handleSubmit =   async(e) => {
+  const handleSubmit = async(e) => {
           
     e.preventDefault()
     setFormError(null)
@@ -59,18 +63,41 @@ const Create = () => {
           }
     })
 
+  //  get the assigned users Id in an array for Firebase for querry
+   const usersIDs = assignedUsers.map((u) => {
+     return [u.id]
+   })
+   const FinalID = usersIDs.flat()
+
+
+
     const project = {
       name,
       details,
       category,
-      category,
       dueDate: Timestamp.fromDate(new Date(dueDate)),
       comments: [],
       createdBy,
-      assignedUsersList
+      assignedUsersList,
+      assignedUsersId: [...FinalID],
+
 
     }
+     
 
+     
+    assignedUsersList.forEach(async(name) => {
+      const docRef = doc(db,"users",name.id)
+      await updateDoc(docRef,{
+        projectsAssignedTotal:increment(1),
+        assignedProjects: arrayUnion({
+          projectsAssignedTitle: project.name,
+          assignedDate : Timestamp.fromDate(new Date()),
+          projectsId : uuid()
+        } )
+      })
+    })
+ 
      await addDocument(project)
      if(!state.error){
         navigate('/')

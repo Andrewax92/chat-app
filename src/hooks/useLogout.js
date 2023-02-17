@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore"
 import { auth, db } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
+import { Timestamp } from "firebase/firestore";
 
 export const useLogout = () => {
 
@@ -24,7 +25,8 @@ export const useLogout = () => {
             const docRef = doc(db, 'users', uid)
 
             await updateDoc(docRef, {
-                online: false
+                online: false,
+                lastVisit: Timestamp.now()
             })
 
 

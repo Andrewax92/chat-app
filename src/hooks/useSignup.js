@@ -43,16 +43,20 @@ export const useSignup = () => {
             // create a user document
 
             await setDoc(doc(db, 'users', response.user.uid), {
+                assignedProjects: [],
                 online: true,
                 displayName,
-                photoURL: imgUrl
+                photoURL: imgUrl,
+                lastVisit: null
             })
+
 
 
             // add display name and phumbnail 
             await updateProfile(auth.currentUser, { displayName, photoURL: imgUrl })
 
             dispatch({ type: 'LOGIN', payload: response.user })
+
 
             if (!isCancelled) {
                 setIsPending(false)

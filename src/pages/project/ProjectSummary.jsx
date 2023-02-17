@@ -9,6 +9,7 @@ const ProjectSummary = ({project}) => {
     const navigate = useNavigate()
 
     const handleClick = (e) => {
+        e.preventDefault()
         deleteDocument(project.id)
 
         navigate("/")

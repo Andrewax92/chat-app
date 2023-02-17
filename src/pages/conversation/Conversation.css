@@ -1,0 +1,29 @@
+.chat{
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #8d69f1;
+    position: fixed;
+    background:white;
+    height: 500px;
+    width: 400px;
+    bottom: 7%;
+    right:200px;
+
+
+    z-index: 90;
+
+}
+.chatInfo{
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    color: white;
+    background-color: #8d69f1;
+}
+.chatIcon{
+    align-self: flex-start;
+
+    
+}

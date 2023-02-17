@@ -21,6 +21,8 @@ export const useCollection = (collectionName, _queryColection, _orderByElements)
 
         if (queryColection) {
             ref = query(collection(db, collectionName), where(...queryColection))
+
+            console.log(queryColection);
         }
         if (orderByElements) {
             ref = query(collection(db, collectionName), where(...queryColection), orderBy(...orderByElements))
@@ -49,7 +51,7 @@ export const useCollection = (collectionName, _queryColection, _orderByElements)
 
         return () => unsubscribe()
 
-    }, [collectionName, queryColection])
+    }, [collectionName, queryColection, orderByElements])
 
     return { documents, error }
 }

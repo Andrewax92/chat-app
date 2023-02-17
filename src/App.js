@@ -10,6 +10,8 @@ import Sidebar from './components/Sidebar';
 import { useAuthContext } from './hooks/useAuthContext'
 import Users from './components/Users';
 
+// import Conversation from './pages/conversation/Conversation';
+
 function App() {
   const { user, authIsReady } = useAuthContext()
 
@@ -26,15 +28,20 @@ function App() {
               <Route path='/signup' element={!user ? <Signup /> : <Navigate to="/" />} />
               <Route path='/create' element={user ? <Create /> : <Navigate to="/login" />} />
               <Route path='/project/:id' element={user ? <Project /> : <Navigate to="/login" />} />
+              {/* <Route path='/chat/:id' element={<Conversation />} /> */}
 
 
             </Routes>
 
 
           </div>
+          {user && <Users />}
+
+
+
         </BrowserRouter>
       )}
-      {user && <Users />}
+
 
     </div>
   );

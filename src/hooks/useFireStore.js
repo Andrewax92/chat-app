@@ -6,7 +6,8 @@ let initialState = {
     document: null,
     isPending: false,
     error: null,
-    success: null
+    success: null,
+
 }
 
 const reducer = (state, action) => {

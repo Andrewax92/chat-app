@@ -35,6 +35,7 @@ function ProjectComments({project}) {
   return (
     <div className="project-comments">
       <h4>Project Comments</h4>
+      <div className="project-comments-container">
       <ul>
         {project.comments.length > 0 && project.comments.map(comment => (
 
@@ -53,8 +54,7 @@ function ProjectComments({project}) {
           </li>
         ))}
       </ul>
-
-
+      </div>
       <form  onSubmit={handleSubmit} className="add-comment">
         <label>
           <span>Add new comment</span>
